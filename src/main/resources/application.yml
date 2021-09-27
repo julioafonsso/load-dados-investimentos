@@ -5,7 +5,7 @@ spring:
         show-sql: false
         properties:
             hibernate:
-                dialect:
+                dialect: org.hibernate.dialect.PostgreSQLDialect
     datasource:
         url: jdbc:postgresql://localhost:15432/Investimento
         username: postgres

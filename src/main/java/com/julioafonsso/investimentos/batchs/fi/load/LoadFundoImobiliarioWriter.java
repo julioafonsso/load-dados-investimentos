@@ -33,7 +33,7 @@ public class LoadFundoImobiliarioWriter implements ItemWriter<FundoImobiliario> 
                 } else {
 
                     this.fundoImobiliarioRepository.deleteByCodigoAndDataCotacao(fundo.getCodigo(), fundo.getDataCotacao());
-                    this.fundoImobiliarioRepository.updateAcaoIndUltimaCotacaoToFalse(fundo.getCodigo());
+                    this.fundoImobiliarioRepository.updateFundoIndUltimaCotacaoToFalse(fundo.getCodigo());
                     this.fundoImobiliarioRepository.save(fundo);
                 }
             } catch (Exception e) {

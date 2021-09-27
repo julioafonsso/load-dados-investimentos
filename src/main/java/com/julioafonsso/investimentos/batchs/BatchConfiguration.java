@@ -37,16 +37,17 @@ public class BatchConfiguration {
 
     @Bean
     public Flow splitFlow(Flow flowAcao,
-                          Flow flowFI) {
+                          Flow flowFI,
+                          Flow flowOpcao) {
         return new FlowBuilder<SimpleFlow>("FlowSplit")
                 .split(executorFlow())
-                .add(flowAcao, flowFI)
+                .add(flowAcao, flowFI, flowOpcao)
                 .build();
     }
 
 
     @Bean
-    public TaskExecutor executorFlow(){
+    public TaskExecutor executorFlow() {
         return new SimpleAsyncTaskExecutor("SplitJob");
     }
 

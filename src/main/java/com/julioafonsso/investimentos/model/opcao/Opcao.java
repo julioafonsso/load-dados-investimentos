@@ -14,6 +14,9 @@ public class Opcao {
     private Long id;
 
     @Column
+    String codigo;
+
+    @Column
     private String codigoAcao;
 
     @Column
@@ -32,10 +35,10 @@ public class Opcao {
     private String modelo;
 
     @Column
-    private Double valorUltimaCotacao;
+    private Double cotacao;
 
     @Column
-    private LocalDate dataUltimaCotacao;
+    private LocalDate dataCotacao;
 
     @Column
     private Integer numeroNegociacao;
@@ -61,12 +64,16 @@ public class Opcao {
     @Column
     private Double vega;
 
-    public Long getId() {
-        return id;
+    @Column
+    private Boolean indUltimaCotacao;
+
+
+    public String getCodigo() {
+        return codigo;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
     public String getCodigoAcao() {
@@ -117,20 +124,20 @@ public class Opcao {
         this.modelo = modelo;
     }
 
-    public Double getValorUltimaCotacao() {
-        return valorUltimaCotacao;
+    public Double getCotacao() {
+        return cotacao;
     }
 
-    public void setValorUltimaCotacao(Double valorUltimaCotacao) {
-        this.valorUltimaCotacao = valorUltimaCotacao;
+    public void setCotacao(Double cotacao) {
+        this.cotacao = cotacao;
     }
 
-    public LocalDate getDataUltimaCotacao() {
-        return dataUltimaCotacao;
+    public LocalDate getDataCotacao() {
+        return dataCotacao;
     }
 
-    public void setDataUltimaCotacao(LocalDate dataUltimaCotacao) {
-        this.dataUltimaCotacao = dataUltimaCotacao;
+    public void setDataCotacao(LocalDate dataCotacao) {
+        this.dataCotacao = dataCotacao;
     }
 
     public Integer getNumeroNegociacao() {
@@ -195,5 +202,13 @@ public class Opcao {
 
     public void setVega(Double vega) {
         this.vega = vega;
+    }
+
+    public Boolean getIndUltimaCotacao() {
+        return indUltimaCotacao;
+    }
+
+    public void setIndUltimaCotacao(Boolean indUltimaCotacao) {
+        this.indUltimaCotacao = indUltimaCotacao;
     }
 }

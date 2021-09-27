@@ -1,12 +1,8 @@
 package com.julioafonsso.investimentos.batchs.fi;
 
-import com.julioafonsso.investimentos.batchs.acao.load.LoadAcaoProcessor;
-import com.julioafonsso.investimentos.batchs.acao.load.LoadAcaoReader;
-import com.julioafonsso.investimentos.batchs.acao.load.LoadAcaoWriter;
 import com.julioafonsso.investimentos.batchs.fi.load.LoadFundoImobiliarioWriter;
 import com.julioafonsso.investimentos.batchs.fi.load.LoadFundoImobiliaroProcessor;
 import com.julioafonsso.investimentos.batchs.fi.load.LoadFundosImobiliariosReader;
-import com.julioafonsso.investimentos.model.acao.Acao;
 import com.julioafonsso.investimentos.model.fi.FundoImobiliario;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;

@@ -20,5 +20,5 @@ public interface FundoImobiliarioRepository
     @Transactional
     @Modifying
     @Query("update FundoImobiliario f set f.indUltimaCotacao = false where f.codigo = :codigo and f.indUltimaCotacao = true")
-    int updateAcaoIndUltimaCotacaoToFalse(@Param("codigo") String codigo);
+    int updateFundoIndUltimaCotacaoToFalse(@Param("codigo") String codigo);
 }

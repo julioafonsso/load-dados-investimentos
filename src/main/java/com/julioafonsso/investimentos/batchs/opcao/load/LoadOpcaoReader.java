@@ -15,6 +15,7 @@ public class LoadOpcaoReader implements ItemReader<String> {
 
     private List<String> listaOpcoes;
     private int index;
+
     private LoadOpcaoReader() throws IOException {
         this.listaOpcoes = new ArrayList<>();
 
@@ -27,7 +28,12 @@ public class LoadOpcaoReader implements ItemReader<String> {
                 .filter(element -> "IdAcao".equals(element.attributes().get("name")))
                 .findFirst()
                 .get()
-                .getElementsByTag("option").forEach(element -> this.listaOpcoes.add(element.text()));
+                .getElementsByTag("option")
+                .forEach(element -> {
+                            if (element.text().trim().length() > 0)
+                                this.listaOpcoes.add(element.text());
+                        }
+                );
 
         this.index = 0;
 
@@ -35,9 +41,9 @@ public class LoadOpcaoReader implements ItemReader<String> {
 
     @Override
     public synchronized String read() {
-        if(index == this.listaOpcoes.size())
+        if (index == this.listaOpcoes.size())
             return null;
 
-        return this.listaOpcoes.get(++index);
+        return this.listaOpcoes.get(index++);
     }
 }
