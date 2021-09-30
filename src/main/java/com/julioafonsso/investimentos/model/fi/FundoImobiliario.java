@@ -19,10 +19,10 @@ public class FundoImobiliario {
     private Boolean indUltimaCotacao;
     @Column
     private LocalDateTime createDate;
-    @Column
+    @Column(precision = 16, scale = 2)
     private Double valorMercado;
     @Column
-    private Double quantidadeCotas;
+    private Integer quantidadeCotas;
     @Column
     private LocalDate dataUltimoInforme;
     @Column
@@ -32,85 +32,85 @@ public class FundoImobiliario {
     @Column
     private String segmento;
 
-    @Column
+    @Column(precision = 4, scale = 2)
     private Double cotacao;
     @Column
     private LocalDate dataCotacao;
-    @Column
+    @Column(precision = 4, scale = 2)
     private Double cotacaoMinima52Semanas;
-    @Column
+    @Column(precision = 4, scale = 2)
     private Double cotacaoMaxima52Semanas;
-    @Column
+    @Column(precision = 16, scale = 2)
     private Double volumeNegociado;
-    @Column
+    @Column(precision = 2, scale = 2)
     private Double oscilacaoDiaria;
-    @Column
+    @Column(precision = 2, scale = 2)
     private Double oscilacaoMes;
-    @Column
+    @Column(precision = 2, scale = 2)
     private Double oscilacao30Dias;
-    @Column
+    @Column(precision = 4, scale = 2)
     private Double oscilacao12Meses;
-    @Column
+    @Column(precision = 4, scale = 2)
     private Double oscilacaoAno;
-    @Column
+    @Column(precision = 4, scale = 2)
     private Double oscilacaoAnoD1;
-    @Column
+    @Column(precision = 4, scale = 2)
     private Double oscilacaoAnoD2;
-    @Column
+    @Column(precision = 4, scale = 2)
     private Double oscilacaoAnoD3;
-    @Column
+    @Column(precision = 4, scale = 2)
     private Double oscilacaoAnoD4;
-    @Column
+    @Column(precision = 4, scale = 2)
     private Double oscilacaoAnoD5;
 
-    @Column
+    @Column(precision = 16, scale = 2)
     private Double ativos;
-    @Column
+    @Column(precision = 16, scale = 2)
     private Double patrimonioLiquido;
-    @Column
+    @Column(precision = 16, scale = 2)
     private Double fundsFromOperationYield;
-    @Column
+    @Column(precision = 16, scale = 2)
     private Double fundFromOperationPorCota;
-    @Column
+    @Column(precision = 2, scale = 2)
     private Double dividendoYield;
-    @Column
+    @Column(precision = 3, scale = 2)
     private Double dividendoPorCota;
-    @Column
+    @Column(precision = 16, scale = 2)
     private Double precoPorValorPatrimonial;
-    @Column
+    @Column(precision = 4, scale = 2)
     private Double valorPatrimonialPorCota;
 
     @Column
-    private Double quantidadeImoveis;
-    @Column
+    private Integer quantidadeImoveis;
+    @Column(precision = 2, scale = 2)
     private Double vacanciaMedia;
     @Column
-    private Double quantidadeUnidades;
+    private Integer quantidadeUnidades;
     @Column
-    private Double areaMetroQuadrado;
-    @Column
+    private Integer areaMetroQuadrado;
+    @Column(precision = 2, scale = 2)
     private Double percentagemImoveisFisicos;
-    @Column
+    @Column(precision = 16, scale = 2)
     private Double valorAnualAluguelMetroQuadrado;
-    @Column
+    @Column(precision = 2, scale = 2)
     private Double capRate;
-    @Column
+    @Column(precision = 16, scale = 2)
     private Double precoM2;
-    @Column
+    @Column(precision = 16, scale = 2)
     private Double receita12Meses;
-    @Column
+    @Column(precision = 16, scale = 2)
     private Double receita3Meses;
-    @Column
+    @Column(precision = 16, scale = 2)
     private Double vendaAtivo12meses;
-    @Column
+    @Column(precision = 16, scale = 2)
     private Double vendaAtivo3meses;
-    @Column
+    @Column(precision = 16, scale = 2)
     private Double fundFromOperation12meses;
-    @Column
+    @Column(precision = 16, scale = 2)
     private Double fundFromOperation3meses;
-    @Column
+    @Column(precision = 16, scale = 2)
     private Double rendimentoDistribuido12meses;
-    @Column
+    @Column(precision = 16, scale = 2)
     private Double rendimentoDistribuido3meses;
 
     public String getCodigo() {
@@ -145,11 +145,11 @@ public class FundoImobiliario {
         this.valorMercado = valorMercado;
     }
 
-    public Double getQuantidadeCotas() {
+    public Integer getQuantidadeCotas() {
         return quantidadeCotas;
     }
 
-    public void setQuantidadeCotas(Double quantidadeCotas) {
+    public void setQuantidadeCotas(Integer quantidadeCotas) {
         this.quantidadeCotas = quantidadeCotas;
     }
 
@@ -369,11 +369,11 @@ public class FundoImobiliario {
         this.valorPatrimonialPorCota = valorPatrimonialPorCota;
     }
 
-    public Double getQuantidadeImoveis() {
+    public Integer getQuantidadeImoveis() {
         return quantidadeImoveis;
     }
 
-    public void setQuantidadeImoveis(Double quantidadeImoveis) {
+    public void setQuantidadeImoveis(Integer quantidadeImoveis) {
         this.quantidadeImoveis = quantidadeImoveis;
     }
 
@@ -385,19 +385,19 @@ public class FundoImobiliario {
         this.vacanciaMedia = vacanciaMedia;
     }
 
-    public Double getQuantidadeUnidades() {
+    public Integer getQuantidadeUnidades() {
         return quantidadeUnidades;
     }
 
-    public void setQuantidadeUnidades(Double quantidadeUnidades) {
+    public void setQuantidadeUnidades(Integer quantidadeUnidades) {
         this.quantidadeUnidades = quantidadeUnidades;
     }
 
-    public Double getAreaMetroQuadrado() {
+    public Integer getAreaMetroQuadrado() {
         return areaMetroQuadrado;
     }
 
-    public void setAreaMetroQuadrado(Double areaMetroQuadrado) {
+    public void setAreaMetroQuadrado(Integer areaMetroQuadrado) {
         this.areaMetroQuadrado = areaMetroQuadrado;
     }
 
@@ -497,7 +497,7 @@ public class FundoImobiliario {
         this.rendimentoDistribuido3meses = rendimentoDistribuido3meses;
     }
 
-    public boolean isDataCotacaoOldThen3Months(){
+    public boolean isDataCotacaoOldThen3Months() {
         LocalDate localDateTime = LocalDate.now();
         localDateTime = localDateTime.plusDays(-90);
         return localDateTime.compareTo(this.getDataCotacao()) > 0;

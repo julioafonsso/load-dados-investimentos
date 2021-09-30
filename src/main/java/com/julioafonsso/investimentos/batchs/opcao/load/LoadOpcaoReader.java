@@ -19,7 +19,8 @@ public class LoadOpcaoReader implements ItemReader<String> {
     private LoadOpcaoReader() throws IOException {
         this.listaOpcoes = new ArrayList<>();
 
-        Document doc = Jsoup.connect("https://opcoes.net.br/opcoes/bovespa").get();
+        Document doc = Jsoup.connect("http://opcoes.net.br/opcoes/bovespa")
+                .get();
         doc.getElementsByTag("select").get(0).attributes().get("name");
 
 

@@ -22,9 +22,9 @@ public class Acao {
     @Column
     private Boolean indUltimaCotacao;
 
-    @Column
+    @Column(precision = 16, scale = 2)
     private Double valorMercado;
-    @Column
+    @Column(precision = 16, scale = 2)
     private Double valorFirma;
     @Column
     private Long numeroAcoes;
@@ -36,117 +36,117 @@ public class Acao {
     private String subSetor;
 
 
-    @Column
+    @Column(precision = 4, scale = 2)
     private Double cotacao;
     @Column
     private LocalDate dataCotacao;
     @Column
     private String tipo;
-    @Column
+    @Column(precision = 16, scale = 2)
     private Double volumeNegociado;
-    @Column
+    @Column(precision = 4, scale = 2)
     private Double valorPatrimonialPorAcao;
-    @Column
+    @Column(precision = 4, scale = 2)
     private Double cotacaoMinima52Semanas;
-    @Column
+    @Column(precision = 4, scale = 2)
     private Double cotacaoMaxima52Semanas;
-    @Column
+    @Column(precision = 4, scale = 2)
     private Double lucroPorAcao;
 
-    @Column
+    @Column(precision = 2, scale = 2)
     private Double oscilacaoDiaria;
-    @Column
+    @Column(precision = 2, scale = 2)
     private Double oscilacaoMes;
-    @Column
+    @Column(precision = 4, scale = 2)
     private Double oscilacao30Dias;
-    @Column
+    @Column(precision = 4, scale = 2)
     private Double oscilacao12Meses;
-    @Column
+    @Column(precision = 4, scale = 2)
     private Double oscilacaoAno;
-    @Column
+    @Column(precision = 4, scale = 2)
     private Double oscilacaoAnoD1;
-    @Column
+    @Column(precision = 4, scale = 2)
     private Double oscilacaoAnoD2;
-    @Column
+    @Column(precision = 4, scale = 2)
     private Double oscilacaoAnoD3;
-    @Column
+    @Column(precision = 4, scale = 2)
     private Double oscilacaoAnoD4;
-    @Column
+    @Column(precision = 4, scale = 2)
     private Double oscilacaoAnoD5;
 
-    @Column
+    @Column(precision = 4, scale = 2)
     private Double precoPorLucro;
-    @Column
+    @Column(precision = 4, scale = 2)
     private Double precoPorValorPatrimonial;
-    @Column
+    @Column(precision = 4, scale = 2)
     private Double precoPorEbit;
-    @Column
+    @Column(precision = 4, scale = 2)
     private Double psr;
-    @Column
+    @Column(precision = 4, scale = 2)
     private Double precoPorAtivo;
-    @Column
+    @Column(precision = 4, scale = 2)
     private Double precoPorAtivoCirculante;
-    @Column
+    @Column(precision = 4, scale = 2)
     private Double dividendoYield;
-    @Column
+    @Column(precision = 4, scale = 2)
     private Double evalutationPorEbitda;
-    @Column
+    @Column(precision = 4, scale = 2)
     private Double evalutationPorEbit;
-    @Column
+    @Column(precision = 4, scale = 2)
     private Double precoPorCapitalGiro;
 
-    @Column
+    @Column(precision = 4, scale = 2)
     private Double roe;
-    @Column
+    @Column(precision = 4, scale = 2)
     private Double roic;
-    @Column
+    @Column(precision = 4, scale = 2)
     private Double ebitPorAtivo;
-    @Column
+    @Column(precision = 4, scale = 2)
     private Double crescimentoReceita;
-    @Column
+    @Column(precision = 4, scale = 2)
     private Double receitaLiquidaPorAtivo;
-    @Column
+    @Column(precision = 4, scale = 2)
     private Double margemBruta;
-    @Column
+    @Column(precision = 4, scale = 2)
     private Double margemEbit;
-    @Column
+    @Column(precision = 4, scale = 2)
     private Double margemLiquida;
 
-    @Column
+    @Column(precision = 4, scale = 2)
     private Double liquidezCorrente;
-    @Column
+    @Column(precision = 4, scale = 2)
     private Double dividaBrutaPorPatrimonio;
-    @Column
+    @Column(precision = 4, scale = 2)
     private Double dividaLiquidaPorPatrimonio;
-    @Column
+    @Column(precision = 4, scale = 2)
     private Double dividaLiquidaPorEbitda;
-    @Column
+    @Column(precision = 4, scale = 2)
     private Double patrimonioLiquidoPorATivo;
 
-    @Column
+    @Column(precision = 16, scale = 2)
     private Double ativo;
-    @Column
+    @Column(precision = 16, scale = 2)
     private Double ativoCirculante;
-    @Column
+    @Column(precision = 16, scale = 2)
     private Double disponibilidade;
-    @Column
+    @Column(precision = 16, scale = 2)
     private Double dividaBruta;
-    @Column
+    @Column(precision = 16, scale = 2)
     private Double dividaLiquida;
-    @Column
+    @Column(precision = 16, scale = 2)
     private Double patrimonioLiquido;
 
-    @Column
+    @Column(precision = 16, scale = 2)
     private Double receitaLiquida12Meses;
-    @Column
+    @Column(precision = 16, scale = 2)
     private Double receitaLiquida3Meses;
-    @Column
+    @Column(precision = 16, scale = 2)
     private Double ebit12Meses;
-    @Column
+    @Column(precision = 16, scale = 2)
     private Double ebit3Meses;
-    @Column
+    @Column(precision = 16, scale = 2)
     private Double lucroLiquido12Meses;
-    @Column
+    @Column(precision = 16, scale = 2)
     private Double lucroLiquido3Meses;
 
     @Column

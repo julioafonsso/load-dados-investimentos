@@ -22,7 +22,7 @@ public class Opcao {
     @Column
     private String tipo;
 
-    @Column
+    @Column(precision = 4, scale = 2)
     private Double valorStrike;
 
     @Column
@@ -34,7 +34,7 @@ public class Opcao {
     @Column
     private String modelo;
 
-    @Column
+    @Column(precision = 4, scale = 2)
     private Double cotacao;
 
     @Column
@@ -46,22 +46,22 @@ public class Opcao {
     @Column
     private Double volume;
 
-    @Column
+    @Column(precision = 4, scale = 2)
     private Double volatilidade;
 
-    @Column
+    @Column(precision = 4, scale = 4)
     private Double delta;
 
-    @Column
+    @Column(precision = 4, scale = 4)
     private Double gamma;
 
-    @Column
+    @Column(precision = 4, scale = 2)
     private Double thetaDinheiro;
 
-    @Column
+    @Column(precision = 4, scale = 2)
     private Double thetaPercentual;
 
-    @Column
+    @Column(precision = 4, scale = 4)
     private Double vega;
 
     @Column

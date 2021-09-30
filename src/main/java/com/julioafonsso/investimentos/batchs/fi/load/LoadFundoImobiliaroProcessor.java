@@ -12,7 +12,6 @@ import org.springframework.batch.item.ItemProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -75,7 +74,7 @@ public class LoadFundoImobiliaroProcessor implements ItemProcessor<String, Fundo
 
     private void preencherInfoBase(FundoImobiliario fundo, Document doc) {
         fundo.setValorMercado(convertToDouble(getInfoByLabelDataTitle(doc, "Valor de mercado")));
-        fundo.setQuantidadeCotas(convertToDouble(getInfoByLabelDataTitle(doc, "Nº de cotas")));
+        fundo.setQuantidadeCotas(convertToIntger(getInfoByLabelDataTitle(doc, "Nº de cotas")));
 
         fundo.setDataUltimoInforme(convertToDate(getInfoByLabelDataTitle(doc, "Último informe trimestral")));
 
@@ -107,12 +106,12 @@ public class LoadFundoImobiliaroProcessor implements ItemProcessor<String, Fundo
     }
 
     private void preencherDadosImoveis(FundoImobiliario fundo, Document doc) {
-        fundo.setQuantidadeImoveis(convertToDouble(getInfoByLabelDataTitle(doc, "Quantidade de imóveis")));
-        fundo.setQuantidadeUnidades(convertToDouble(getInfoByLabelDataTitle(doc, "Quantidade de unidades")));
+        fundo.setQuantidadeImoveis(convertToIntger(getInfoByLabelDataTitle(doc, "Quantidade de imóveis")));
+        fundo.setQuantidadeUnidades(convertToIntger(getInfoByLabelDataTitle(doc, "Quantidade de unidades")));
         fundo.setPercentagemImoveisFisicos(convertToDouble(getInfoByLabelDataTitle(doc, "Imóveis/PL do FII")));
         fundo.setCapRate(convertToDouble(getInfoByLabelDataTitle(doc, "Cap Rate")));
         fundo.setVacanciaMedia(convertToDouble(getInfoByLabelDataTitle(doc, "Vacância Média")));
-        fundo.setAreaMetroQuadrado(convertToDouble(getInfoByLabelDataTitle(doc, "Área ")));
+        fundo.setAreaMetroQuadrado(convertToIntger(getInfoByLabelDataTitle(doc, "Área ")));
         fundo.setValorAnualAluguelMetroQuadrado(convertToDouble(getInfoByLabelDataTitle(doc, "Aluguel/m²")));
         fundo.setPrecoM2(convertToDouble(getInfoByLabelDataTitle(doc, "Preço do m²")));
 
@@ -137,6 +136,20 @@ public class LoadFundoImobiliaroProcessor implements ItemProcessor<String, Fundo
     private Double convertToDouble(String valor) {
         try {
             return Double.parseDouble(
+                    valor.replace(".", "")
+                            .replace(",", ".")
+                            .replace("%", "")
+                            .replace("R$", "")
+                            .trim()
+            );
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    private Integer convertToIntger(String valor) {
+        try {
+            return Integer.parseInt(
                     valor.replace(".", "")
                             .replace(",", ".")
                             .replace("%", "")

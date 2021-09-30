@@ -9,7 +9,6 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -26,6 +25,7 @@ public class LoadOpcaoProcessor implements ItemProcessor<String, List<Opcao>> {
 
     @Override
     public List<Opcao> process(String codigo) {
+
 
         ResponseEntity<OpcaoResponse> response = new RestTemplateBuilder()
                 .build()
