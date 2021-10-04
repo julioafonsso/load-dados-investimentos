@@ -8,47 +8,28 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Entity
-public class Acao {
-    private final static Logger LOGGER = LoggerFactory.getLogger(Acao.class);
+public class DadosMedioPorSetor {
+
+    private final static Logger LOGGER = LoggerFactory.getLogger(DadosMedioPorSetor.class);
 
     @Id
     @GeneratedValue
     private Integer id;
-    @Column
-    private String codigo;
-    @Column
-    private Boolean indUltimaCotacao;
 
-    @Column(precision = 16, scale = 2)
-    private Double valorMercado;
-    @Column(precision = 16, scale = 2)
-    private Double valorFirma;
-    @Column
-    private Long numeroAcoes;
-    @Column
-    private LocalDate dataUltimoBalanco;
     @Column
     private String setor;
 
-
-
-    @Column(precision = 4, scale = 2)
-    private Double cotacao;
     @Column
-    private LocalDate dataCotacao;
+    private Boolean indUltimoCalculo;
+
     @Column
-    private String tipo;
-    @Column(precision = 16, scale = 2)
-    private Double volumeNegociado;
+    private LocalDate data;
+
     @Column(precision = 4, scale = 2)
     private Double valorPatrimonialPorAcao;
-    @Column(precision = 4, scale = 2)
-    private Double cotacaoMinima52Semanas;
-    @Column(precision = 4, scale = 2)
-    private Double cotacaoMaxima52Semanas;
+
     @Column(precision = 4, scale = 2)
     private Double lucroPorAcao;
 
@@ -122,83 +103,7 @@ public class Acao {
     @Column(precision = 4, scale = 2)
     private Double patrimonioLiquidoPorATivo;
 
-    @Column(precision = 16, scale = 2)
-    private Double ativo;
-    @Column(precision = 16, scale = 2)
-    private Double ativoCirculante;
-    @Column(precision = 16, scale = 2)
-    private Double disponibilidade;
-    @Column(precision = 16, scale = 2)
-    private Double dividaBruta;
-    @Column(precision = 16, scale = 2)
-    private Double dividaLiquida;
-    @Column(precision = 16, scale = 2)
-    private Double patrimonioLiquido;
 
-    @Column(precision = 16, scale = 2)
-    private Double receitaLiquida12Meses;
-    @Column(precision = 16, scale = 2)
-    private Double receitaLiquida3Meses;
-    @Column(precision = 16, scale = 2)
-    private Double ebit12Meses;
-    @Column(precision = 16, scale = 2)
-    private Double ebit3Meses;
-    @Column(precision = 16, scale = 2)
-    private Double lucroLiquido12Meses;
-    @Column(precision = 16, scale = 2)
-    private Double lucroLiquido3Meses;
-
-    @Column
-    private LocalDateTime createDate;
-
-
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
-
-    public Boolean getIndUltimaCotacao() {
-        return indUltimaCotacao;
-    }
-
-    public void setIndUltimaCotacao(Boolean indUltimaCotacao) {
-        this.indUltimaCotacao = indUltimaCotacao;
-    }
-
-    public Double getValorMercado() {
-        return valorMercado;
-    }
-
-    public void setValorMercado(Double valorMercado) {
-        this.valorMercado = valorMercado;
-    }
-
-    public Double getValorFirma() {
-        return valorFirma;
-    }
-
-    public void setValorFirma(Double valorFirma) {
-        this.valorFirma = valorFirma;
-    }
-
-    public Long getNumeroAcoes() {
-        return numeroAcoes;
-    }
-
-    public void setNumeroAcoes(Long numeroAcoes) {
-        this.numeroAcoes = numeroAcoes;
-    }
-
-    public LocalDate getDataUltimoBalanco() {
-        return dataUltimoBalanco;
-    }
-
-    public void setDataUltimoBalanco(LocalDate dataUltimoBalanco) {
-        this.dataUltimoBalanco = dataUltimoBalanco;
-    }
 
     public String getSetor() {
         return setor;
@@ -208,37 +113,6 @@ public class Acao {
         this.setor = setor;
     }
 
-    public Double getCotacao() {
-        return cotacao;
-    }
-
-    public void setCotacao(Double cotacao) {
-        this.cotacao = cotacao;
-    }
-
-    public LocalDate getDataCotacao() {
-        return dataCotacao;
-    }
-
-    public void setDataCotacao(LocalDate dataCotacao) {
-        this.dataCotacao = dataCotacao;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    public Double getVolumeNegociado() {
-        return volumeNegociado;
-    }
-
-    public void setVolumeNegociado(Double volumeNegociado) {
-        this.volumeNegociado = volumeNegociado;
-    }
 
     public Double getValorPatrimonialPorAcao() {
         return valorPatrimonialPorAcao;
@@ -246,22 +120,6 @@ public class Acao {
 
     public void setValorPatrimonialPorAcao(Double valorPatrimonialPorAcao) {
         this.valorPatrimonialPorAcao = valorPatrimonialPorAcao;
-    }
-
-    public Double getCotacaoMinima52Semanas() {
-        return cotacaoMinima52Semanas;
-    }
-
-    public void setCotacaoMinima52Semanas(Double cotacaoMinima52Semanas) {
-        this.cotacaoMinima52Semanas = cotacaoMinima52Semanas;
-    }
-
-    public Double getCotacaoMaxima52Semanas() {
-        return cotacaoMaxima52Semanas;
-    }
-
-    public void setCotacaoMaxima52Semanas(Double cotacaoMaxima52Semanas) {
-        this.cotacaoMaxima52Semanas = cotacaoMaxima52Semanas;
     }
 
     public Double getLucroPorAcao() {
@@ -536,114 +394,19 @@ public class Acao {
         this.patrimonioLiquidoPorATivo = patrimonioLiquidoPorATivo;
     }
 
-    public Double getAtivo() {
-        return ativo;
+    public LocalDate getData() {
+        return data;
     }
 
-    public void setAtivo(Double ativo) {
-        this.ativo = ativo;
+    public void setData(LocalDate data) {
+        this.data = data;
     }
 
-    public Double getAtivoCirculante() {
-        return ativoCirculante;
+    public Boolean getIndUltimoCalculo() {
+        return indUltimoCalculo;
     }
 
-    public void setAtivoCirculante(Double ativoCirculante) {
-        this.ativoCirculante = ativoCirculante;
-    }
-
-    public Double getDisponibilidade() {
-        return disponibilidade;
-    }
-
-    public void setDisponibilidade(Double disponibilidade) {
-        this.disponibilidade = disponibilidade;
-    }
-
-    public Double getDividaBruta() {
-        return dividaBruta;
-    }
-
-    public void setDividaBruta(Double dividaBruta) {
-        this.dividaBruta = dividaBruta;
-    }
-
-    public Double getDividaLiquida() {
-        return dividaLiquida;
-    }
-
-    public void setDividaLiquida(Double dividaLiquida) {
-        this.dividaLiquida = dividaLiquida;
-    }
-
-    public Double getPatrimonioLiquido() {
-        return patrimonioLiquido;
-    }
-
-    public void setPatrimonioLiquido(Double patrimonioLiquido) {
-        this.patrimonioLiquido = patrimonioLiquido;
-    }
-
-    public Double getReceitaLiquida12Meses() {
-        return receitaLiquida12Meses;
-    }
-
-    public void setReceitaLiquida12Meses(Double receitaLiquida12Meses) {
-        this.receitaLiquida12Meses = receitaLiquida12Meses;
-    }
-
-    public Double getReceitaLiquida3Meses() {
-        return receitaLiquida3Meses;
-    }
-
-    public void setReceitaLiquida3Meses(Double receitaLiquida3Meses) {
-        this.receitaLiquida3Meses = receitaLiquida3Meses;
-    }
-
-    public Double getEbit12Meses() {
-        return ebit12Meses;
-    }
-
-    public void setEbit12Meses(Double ebit12Meses) {
-        this.ebit12Meses = ebit12Meses;
-    }
-
-    public Double getEbit3Meses() {
-        return ebit3Meses;
-    }
-
-    public void setEbit3Meses(Double ebit3Meses) {
-        this.ebit3Meses = ebit3Meses;
-    }
-
-    public Double getLucroLiquido12Meses() {
-        return lucroLiquido12Meses;
-    }
-
-    public void setLucroLiquido12Meses(Double lucroLiquido12Meses) {
-        this.lucroLiquido12Meses = lucroLiquido12Meses;
-    }
-
-    public Double getLucroLiquido3Meses() {
-        return lucroLiquido3Meses;
-    }
-
-    public void setLucroLiquido3Meses(Double lucroLiquido3Meses) {
-        this.lucroLiquido3Meses = lucroLiquido3Meses;
-    }
-
-    public LocalDateTime getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(LocalDateTime createDate) {
-        this.createDate = createDate;
-    }
-
-    public boolean isDataCotacaoOldThen3Months(){
-        LocalDate localDateTime = LocalDate.now();
-        localDateTime = localDateTime.plusDays(-90);
-        return this.getDataCotacao() == null ||
-                localDateTime.compareTo(this.getDataCotacao()) > 0;
+    public void setIndUltimoCalculo(Boolean indUltimoCalculo) {
+        this.indUltimoCalculo = indUltimoCalculo;
     }
 }

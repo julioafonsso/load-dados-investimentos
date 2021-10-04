@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Repository
 public interface AcaoRepository extends JpaRepository<Acao,Integer> {
@@ -18,4 +19,9 @@ public interface AcaoRepository extends JpaRepository<Acao,Integer> {
     @Modifying
     @Query("update Acao a set a.indUltimaCotacao = false where a.codigo = :codigo and a.indUltimaCotacao = true")
     int updateAcaoIndUltimaCotacaoToFalse(@Param("codigo") String codigo);
+
+    @Query("SELECT DISTINCT setor FROM Acao")
+    List<String> findDistinctSetor();
+
+    List<Acao> findBySetorAndIndUltimaCotacao(String setor, boolean indUltimaCotacao);
 }

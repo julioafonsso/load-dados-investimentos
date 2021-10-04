@@ -13,8 +13,6 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 
 @Component
 public class LoadAcaoProcessor implements ItemProcessor<String, Acao> {
@@ -76,8 +74,7 @@ public class LoadAcaoProcessor implements ItemProcessor<String, Acao> {
 
         acao.setDataUltimoBalanco(convertToDate(getInfoByLabelDataTitle(doc, "Último balanço")));
 
-        acao.setSetor(getInfoByLabelDataTitle(doc, "Setor"));
-        acao.setSubSetor(getInfoByLabelDataTitle(doc, "Subsetor"));
+        acao.setSetor(getInfoByLabelDataTitle(doc, "Subsetor"));
 
         acao.setTipo(getInfoByLabelDataTitle(doc, "Tipo"));
         acao.setVolumeNegociado(convertoToDouble(getInfoByLabelDataTitle(doc, "Volume negociado por dia")));
