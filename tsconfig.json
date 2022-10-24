@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "noImplicitAny": false,
+    "noEmitOnError": true,
+    "removeComments": false,
+    "sourceMap": true,
+    "target": "es2017",
+    "esModuleInterop": true,
+    "outDir": "dist",
+    "module": "commonjs",
+    "lib": ["es2015"],
+    "strict": false
+  },
+  "include": ["src/**/*"]
+}
