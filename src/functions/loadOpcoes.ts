@@ -71,6 +71,7 @@ const buildOpcoes = (
   opcoes.tipo = tipo;
   opcoes.vencimento = dataVencimento;
   opcoes.precoAcao = precoAcao;
+  opcoes.precoAcaoRealTime = precoAcao;
   opcoes.striker = values[3];
   opcoes.ultimoPreco = values[5];
   opcoes.dataUltimaNegociacao = moment(values[7], "DD/MM/YYYY").toDate();

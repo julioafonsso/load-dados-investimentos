@@ -21,6 +21,9 @@ export class Opcoes {
   @Column({ type: "decimal", name: "preco_acao" })
   precoAcao: number;
 
+  @Column({ type: "decimal", name: "preco_acao_real_time" })
+  precoAcaoRealTime: number;
+
   @Column({ type: "decimal" })
   striker: number;
 
