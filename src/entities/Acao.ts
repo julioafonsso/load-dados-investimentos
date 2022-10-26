@@ -69,8 +69,8 @@ export class Acao {
   @Column("decimal", { nullable: true, name: "valor_mercado" })
   valorMercado: number;
 
-  @Column()
-  dataLoad: Date;
+  @Column("date", { name: "dat_info" })
+  data: Date;
 
   @Column()
   pais: string;

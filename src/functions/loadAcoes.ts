@@ -69,7 +69,7 @@ const createAcao = (value: AcaoType, pais: string) => {
   acao.vpa = value.vpa;
   acao.lpa = value.lpa;
   acao.valorMercado = value.valorMercado;
-  acao.dataLoad = new Date();
+  acao.data = new Date();
   acao.pais = pais;
   return acao;
 };

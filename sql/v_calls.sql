@@ -4,6 +4,7 @@ select
     o.codigo,
     o.vencimento,
     o.preco_acao_real_time preco_acao,
+    o.ultimo_preco,
     o.striker,
     o.striker + o.ultimo_preco as PM_FINAL,
     round(
@@ -35,7 +36,17 @@ select
     ) percentual_extrinseco,
     o.delta
 from
-    opcoes o
+    opcoes o,
+    (
+        select
+            min(d.vencimento) vencimento,
+            max(d.data_ultima_negociacao) data_ultima_negociacao
+        from
+            opcoes d
+        where
+            d.vencimento > current_date
+    ) datas
 where
-    o.vencimento > current_date
+    o.vencimento = datas.vencimento
     and tipo = 'CALL'
+    and o.data_ultima_negociacao = datas.data_ultima_negociacao
