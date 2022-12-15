@@ -14,5 +14,4 @@ where
             pais = 'BRASIL'
     )
     and a.pl between 0
-    and 20
-    and a.pvp < 2.5;
+    and 20;

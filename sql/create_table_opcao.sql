@@ -11,6 +11,8 @@ CREATE TABLE public.opcoes (
     data_ultima_negociacao date NOT NULL,
     volatilidade numeric NULL,
     delta numeric NULL,
+    ind_formador_mercado boolean,
+    ind_ultimo_negociacao boolean
     CONSTRAINT "PK_2eabf6b1246ac3730fce966e137" PRIMARY KEY (id)
 );
 

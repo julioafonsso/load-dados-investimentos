@@ -7,7 +7,13 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc --build",
     "acao": "ts-node src/functions/loadAcoes.ts ",
-    "opcoes": "ts-node src/functions/loadOpcoes.ts"
+    "opcoes": "ts-node src/functions/loadOpcoes.ts",
+    "typeorm": "typeorm-ts-node-commonjs",
+    "migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run -d ./src/config/AppDataSource.ts",
+    "schema:sync": "npm run typeorm schema:sync -- -d ./src/config/AppDataSource.ts",
+    "migration:show": "npm run typeorm migration:show -- -d ./src/config/AppDataSource.ts",
+    "migration:generate": "npm run typeorm migration:generate -- -d ./src/config/AppDataSource.ts",
+    "migration:create": "npm run typeorm migration:create"
   },
   "author": "",
   "license": "ISC",

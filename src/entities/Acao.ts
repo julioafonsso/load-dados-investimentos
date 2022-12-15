@@ -56,7 +56,7 @@ export class Acao {
   plAtivo: number;
   @Column("decimal", { nullable: true, name: "passivo_ativo" })
   passivoAtivo: number;
-  @Column("decimal", { nullable: true, name: "liquidez_corrent" })
+  @Column("decimal", { nullable: true, name: "liquidez_corrente" })
   liquidezCorrente: number;
   @Column("decimal", { nullable: true, name: "peg_ratio" })
   pegRatio: number;

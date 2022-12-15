@@ -10,9 +10,9 @@ export const AppDataSource = new DataSource({
   username: "postgres",
   password: "postgres",
   database: "Investimento",
-  synchronize: true,
+  synchronize: false,
   logging: false,
   entities: [Acao, AcaoComOpcao, Opcoes],
   subscribers: [],
-  migrations: [],
+  migrations: ["./src/migrations/*.ts"],
 });

@@ -39,6 +39,12 @@ export class Opcoes {
   @Column({ type: "decimal", nullable: true })
   delta: number;
 
+  @Column({type : "boolean", name: "ind_formador_mercado"})
+  indFormadorMercado : boolean
+
+  @Column({type: "boolean", name: "ind_ultimo_negociacao"})
+  indUltimaNegociacao: boolean;
+
   isEqual = (op: Opcoes): boolean => {
     return this.codigo == op.codigo;
   };

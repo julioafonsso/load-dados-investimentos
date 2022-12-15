@@ -32,6 +32,7 @@ const loadBrasil = async () => {
 };
 
 const main = async () => {
+  debugger
   await AppDataSource.initialize();
   loadUsa();
   loadBrasil();

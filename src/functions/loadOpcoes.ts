@@ -10,6 +10,12 @@ const main = async () => {
   const opcaoRepository = AppDataSource.getRepository(Opcoes);
   const list = await acoesComOpcaoRepository.find();
 
+  const listOldOpcoes = await opcaoRepository.findBy({indFormadorMercado: true});
+  listOldOpcoes.forEach(opcoes => {
+    opcoes.indUltimaNegociacao = false;
+    opcaoRepository.save(opcoes);
+  })
+  
   list.forEach((acoes) => {
     getListOpcoes(acoes.ticker).then((opcoes) => {
       opcoes.data.expirations.forEach(async (ex) => {
@@ -66,7 +72,7 @@ const buildOpcoes = (
   precoAcao: number
 ): Opcoes => {
   const opcoes = new Opcoes();
-  opcoes.codigo = codigoAcao + values[0];
+  opcoes.codigo = codigoAcao.substring(0, 4) + values[0];
   opcoes.acao = codigoAcao;
   opcoes.tipo = tipo;
   opcoes.vencimento = dataVencimento;
@@ -77,6 +83,9 @@ const buildOpcoes = (
   opcoes.dataUltimaNegociacao = moment(values[7], "DD/MM/YYYY").toDate();
   opcoes.volatilidade = values[10];
   opcoes.delta = values[11];
+  opcoes.indFormadorMercado = values[1]
+  opcoes.indUltimaNegociacao = true;
+
   return opcoes;
 };
 
