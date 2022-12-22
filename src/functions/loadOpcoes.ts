@@ -10,7 +10,7 @@ const main = async () => {
   const opcaoRepository = AppDataSource.getRepository(Opcoes);
   const list = await acoesComOpcaoRepository.find();
 
-  const listOldOpcoes = await opcaoRepository.findBy({indFormadorMercado: true});
+  const listOldOpcoes = await opcaoRepository.findBy({indUltimaNegociacao: true});
   listOldOpcoes.forEach(opcoes => {
     opcoes.indUltimaNegociacao = false;
     opcaoRepository.save(opcoes);
@@ -35,7 +35,9 @@ const main = async () => {
               },
             });
 
-            if (opcaoBD == null) opcaoRepository.save(opcao);
+            if (opcaoBD != null) 
+              opcaoRepository.remove(opcaoBD)
+            opcaoRepository.save(opcao);
           }
         });
 
@@ -56,7 +58,9 @@ const main = async () => {
               },
             });
 
-            if (opcaoBD == null) opcaoRepository.save(opcao);
+            if (opcaoBD != null) 
+              opcaoRepository.remove(opcaoBD)
+            opcaoRepository.save(opcao);
           }
         });
       });
