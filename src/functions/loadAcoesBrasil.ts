@@ -1,21 +1,14 @@
-import { AppDataSource } from "../config/AppDataSource";
-import { getAcoesBrasil, getAcoesUSA } from "../sdk/AcoesSDK";
-import buildAcoes from "./buildAcoes";
-
-
+import { getAcoesBrasil } from "../sdk/AcoesSDK";
+import saveAcoes from "./saveAcoes";
 
 const main = async () => {
-  debugger
-  await AppDataSource.initialize();
   
   const acoes = await getAcoesBrasil();
 
   console.log("Vai ser inserido " + acoes.length + " registro de ações Brasil");
-
-  acoes.forEach((acao) => {
-    AppDataSource.manager.save(buildAcoes(acao, "BRASIL"));
-  });
-
+  
+  saveAcoes(acoes)
+  
   console.log("Finalizando load Brasil...");
 
 };

@@ -1,8 +1,8 @@
 import { MigrationInterface, QueryRunner } from "typeorm"
 
-export class CreateVPut1669126340163 implements MigrationInterface {
+export class CreateVPut1671804333131 implements MigrationInterface {
 
-   
+    
     public async up(queryRunner: QueryRunner): Promise<void> {
         queryRunner.query(`
         create or replace view v_put as
@@ -44,9 +44,9 @@ export class CreateVPut1669126340163 implements MigrationInterface {
             o.delta
         from
             opcoes o,
-            data_vencimento_opcao dvo
+            config_opcao cfg
         where
-            o.vencimento = dvo.data_vencimento
+            o.vencimento = cfg.data_vencimento
             and o.ind_ultimo_negociacao = true 
             and tipo = 'PUT'
                 `);

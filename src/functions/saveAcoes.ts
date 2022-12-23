@@ -1,7 +1,28 @@
+import { AppDataSource } from "../config/AppDataSource";
 import { Acao } from "../entities/Acao";
 import { AcaoType } from "../sdk/AcoesSDK";
 
-const buildAcoes = (value: AcaoType, pais: string) => {
+const saveAcoes = async (acoes: AcaoType[]) => {
+    await AppDataSource.initialize();
+    const repository = AppDataSource.getRepository(Acao);
+
+    acoes.forEach(async (acao) => {
+        const acaoDuplicated  = await repository.findOneBy({ticker: acao.ticker, data: new Date()})
+        
+        if(acaoDuplicated != null){
+            await repository.remove(acaoDuplicated)
+        }
+
+        const acaoIndUltimo = await repository.findOneBy({ ticker: acao.ticker, indUltimo: true })
+        if (acaoIndUltimo != null) {
+            acaoIndUltimo.indUltimo = false;
+            await repository.save(acaoIndUltimo);
+        }
+        AppDataSource.manager.save(buildAcoes(acao));
+    });
+}
+
+const buildAcoes = (value: AcaoType) => {
     const acao = new Acao();
     acao.companyId = value.companyId;
     acao.companyName = value.companyName;
@@ -34,8 +55,9 @@ const buildAcoes = (value: AcaoType, pais: string) => {
     acao.lpa = value.lpa;
     acao.valorMercado = value.valorMercado;
     acao.data = new Date();
-    acao.pais = pais;
-    return acao;
-  };
+    acao.indUltimo = true;
 
-  export default buildAcoes;
+    return acao;
+};
+
+export default saveAcoes;

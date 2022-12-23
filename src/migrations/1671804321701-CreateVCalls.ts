@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner } from "typeorm"
 
-export class CreateVCalls1668874434971 implements MigrationInterface {
+export class CreateVCalls1671804321701 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         queryRunner.query(`
@@ -43,9 +43,9 @@ export class CreateVCalls1668874434971 implements MigrationInterface {
             o.delta
         from
             opcoes o,
-            data_vencimento_opcao dvo
+            config_opcao cfg
         where
-            o.vencimento = dvo.data_vencimento
+            o.vencimento = cfg.data_vencimento
             and o.ind_ultimo_negociacao = true 
             and tipo = 'CALL'
             and o.ind_ultimo_negociacao = true

@@ -1,14 +1,14 @@
 import { AppDataSource } from "../config/AppDataSource";
-import { AcaoComOpcao } from "../entities/AcoesComOpcao";
+import { ConfigAcao } from "../entities/ConfigAcao";
 import { Opcoes } from "../entities/Opcoes";
 import { getListOpcoes } from "../sdk/OpcoesSDK";
 import moment from "moment";
 
 const main = async () => {
   await AppDataSource.initialize();
-  const acoesComOpcaoRepository = AppDataSource.getRepository(AcaoComOpcao);
+  const configAcaoReposoitory = AppDataSource.getRepository(ConfigAcao);
   const opcaoRepository = AppDataSource.getRepository(Opcoes);
-  const list = await acoesComOpcaoRepository.find();
+  const list = await configAcaoReposoitory.findBy({pais :"B", indOpcao: true});
 
   const listOldOpcoes = await opcaoRepository.findBy({indUltimaNegociacao: true});
   listOldOpcoes.forEach(opcoes => {

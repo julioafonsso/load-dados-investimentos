@@ -72,6 +72,6 @@ export class Acao {
   @Column("date", { name: "dat_info" })
   data: Date;
 
-  @Column()
-  pais: string;
+  @Column("boolean", {name: "ind_ultimo"})
+  indUltimo: boolean
 }

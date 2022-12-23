@@ -1,9 +1,8 @@
 import { MigrationInterface, QueryRunner, Table, TableIndex } from "typeorm"
 
-export class CreateTableOpcoes1667563360680 implements MigrationInterface {
+export class CreateTableOpcoes1671804282020 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
-
         queryRunner.createTable(new Table({
             name: "opcoes", columns: [
                 {
@@ -32,7 +31,7 @@ export class CreateTableOpcoes1667563360680 implements MigrationInterface {
             "opcoes",
             new TableIndex ({
                 name: "opcoes_tipo_idx",
-                columnNames: ["tipo", "data_ultima_negociacao"],
+                columnNames: ["ind_ultimo_negociacao", "tipo", "data_ultima_negociacao"],
             }),
         )
 
@@ -40,7 +39,7 @@ export class CreateTableOpcoes1667563360680 implements MigrationInterface {
             "opcoes",
             new TableIndex ({
                 name: "opcoes_vencimento_idx",
-                columnNames: ["vencimento", "data_ultima_negociacao", "delta", "tipo"],
+                columnNames: ["ind_ultimo_negociacao","vencimento", "data_ultima_negociacao", "delta", "tipo"],
             }),
         ),
 
@@ -48,7 +47,7 @@ export class CreateTableOpcoes1667563360680 implements MigrationInterface {
             "opcoes",
             new TableIndex ({
                 name: "opcoes_acao_idx",
-                columnNames: ["vencimento", "data_ultima_negociacao", "delta", "tipo", "acao"],
+                columnNames: ["ind_ultimo_negociacao","vencimento", "data_ultima_negociacao", "delta", "tipo", "acao"],
             }),
         )
     }

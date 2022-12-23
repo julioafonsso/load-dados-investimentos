@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner, Table, TableIndex } from "typeorm"
 
-export class CreateTableAcoes1667559798897 implements MigrationInterface {
+export class CreateTableAcoes1671804270743 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(new Table(
@@ -42,7 +42,8 @@ export class CreateTableAcoes1667559798897 implements MigrationInterface {
                 { name: "lpa", type: "decimal", isNullable: true },
                 { name: "valor_mercado", type: "decimal", isNullable: true },
                 { name: "dat_info", type: "date", isNullable: true },
-                { name: "pais", type: "varchar(10)", isNullable: true },
+                { name: "ind_ultimo", type: "boolean", isNullable: true },
+                
                 ]
             }
         ))
@@ -51,7 +52,7 @@ export class CreateTableAcoes1667559798897 implements MigrationInterface {
             "acao",
             new TableIndex({
                 name: "acao_data_idx",
-                columnNames: ["dat_info", "pais"],
+                columnNames: ["ind_ultimo"],
             }),
         )
 
@@ -59,14 +60,14 @@ export class CreateTableAcoes1667559798897 implements MigrationInterface {
             "acao",
             new TableIndex({
                 name: "acao_ticker_idx",
-                columnNames: ["ticker", "dat_info", "pais"],
+                columnNames: ["ticker", "ind_ultimo"],
             }),
         )
         await queryRunner.createIndex(
             "acao",
             new TableIndex({
                 name: "acao_pl_pvp_idx",
-                columnNames: ["pl", "pvp", "dat_info", "pais"],
+                columnNames: ["pl", "pvp", "ind_ultimo"],
             }),
         )
     }
