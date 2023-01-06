@@ -1,8 +1,9 @@
 import { DataSource } from "typeorm";
 import { Acao } from "../entities/Acao";
 import { ConfigAcao } from "../entities/ConfigAcao";
+import { ConfigOpcao } from "../entities/ConfigOpcao";
 import { HistAcao } from "../entities/HistAcao";
-import { Opcoes } from "../entities/Opcoes";
+import { Opcao } from "../entities/Opcoes";
 
 export const AppDataSource = new DataSource({
   type: "postgres",
@@ -13,7 +14,7 @@ export const AppDataSource = new DataSource({
   database: "Investimento",
   synchronize: false,
   logging: false,
-  entities: [Acao, ConfigAcao, Opcoes, HistAcao],
+  entities: [Acao, ConfigAcao, Opcao, HistAcao, ConfigOpcao],
   subscribers: [],
   migrations: ["./src/migrations/*.ts"],
 });

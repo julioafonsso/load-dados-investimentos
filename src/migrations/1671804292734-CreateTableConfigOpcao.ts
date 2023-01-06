@@ -11,6 +11,7 @@ export class CreateTableConfigOpcao1671804292734 implements MigrationInterface {
                 isPrimary: true
             },
             {name: "data_vencimento", type: "date"},
+            {name: "data_ultima_negociacao", type: "date"},
             {name: "delta_min", type: "decimal"},
             {name: "delta_max", type: "decimal"},
             {name: "diff_percentual_min", type: "decimal"},

@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner, Table } from "typeorm"
 
-export class CreateTableAcaoConfig1671804252419 implements MigrationInterface {
+export class CreateTableConfigAcao1671804252419 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         queryRunner.createTable(new Table({

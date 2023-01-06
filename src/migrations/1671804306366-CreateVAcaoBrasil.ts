@@ -1,10 +1,10 @@
 import { MigrationInterface, QueryRunner } from "typeorm"
 
-export class CreateVAcoesBrasil1671804306366 implements MigrationInterface {
+export class CreateVAcaoBrasil1671804306366 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         queryRunner.query(`
-        create or replace view v_acoes_brasil as
+        create or replace view v_acao_brasil as
         select
             a.*,
             cf.ind_opcao

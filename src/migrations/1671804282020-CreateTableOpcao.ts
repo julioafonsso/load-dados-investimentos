@@ -1,10 +1,10 @@
 import { MigrationInterface, QueryRunner, Table, TableIndex } from "typeorm"
 
-export class CreateTableOpcoes1671804282020 implements MigrationInterface {
+export class CreateTableOpcao1671804282020 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         queryRunner.createTable(new Table({
-            name: "opcoes", columns: [
+            name: "opcao", columns: [
                 {
                     name: "id",
                     type: "serial",
@@ -15,39 +15,36 @@ export class CreateTableOpcoes1671804282020 implements MigrationInterface {
                 { name: "tipo", type: "varchar(5)", enum: ["CALL", "PUT"] , isNullable: true},
                 { name: "vencimento", type: "date" , isNullable: true},
                 { name: "preco_acao", type: "decimal" , isNullable: true},
-                { name: "preco_acao_real_time", type: "decimal" , isNullable: true},
                 { name: "striker", type: "decimal" , isNullable: true},
                 { name: "ultimo_preco", type: "decimal" , isNullable: true},
                 { name: "data_ultima_negociacao", type: "date" , isNullable: true},
                 { name: "volatilidade", type: "decimal" , isNullable: true},
                 { name: "delta", type: "decimal" , isNullable: true},
-                { name: "ind_formador_mercado", type: "boolean" , isNullable: true},
-                { name: "ind_ultimo_negociacao", type: "boolean" , isNullable: true},
-
+                { name: "ind_formador_mercado", type: "boolean" , isNullable: true}
             ]
         }))
 
         await queryRunner.createIndex(
-            "opcoes",
+            "opcao",
             new TableIndex ({
-                name: "opcoes_tipo_idx",
-                columnNames: ["ind_ultimo_negociacao", "tipo", "data_ultima_negociacao"],
+                name: "opcao_tipo_idx",
+                columnNames: [ "tipo", "data_ultima_negociacao"],
             }),
         )
 
         await queryRunner.createIndex(
-            "opcoes",
+            "opcao",
             new TableIndex ({
-                name: "opcoes_vencimento_idx",
-                columnNames: ["ind_ultimo_negociacao","vencimento", "data_ultima_negociacao", "delta", "tipo"],
+                name: "opcao_vencimento_idx",
+                columnNames: ["vencimento", "data_ultima_negociacao", "delta", "tipo"],
             }),
         ),
 
         await queryRunner.createIndex(
-            "opcoes",
+            "opcao",
             new TableIndex ({
-                name: "opcoes_acao_idx",
-                columnNames: ["ind_ultimo_negociacao","vencimento", "data_ultima_negociacao", "delta", "tipo", "acao"],
+                name: "opcao_acao_idx",
+                columnNames: ["vencimento", "data_ultima_negociacao", "delta", "tipo", "acao"],
             }),
         )
     }

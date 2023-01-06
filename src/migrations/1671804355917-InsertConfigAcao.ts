@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner } from "typeorm"
 
-export class InsertConfigAcoes1671804355917 implements MigrationInterface {
+export class InsertConfigAcao1671804355917 implements MigrationInterface {
 
   
     public async up(queryRunner: QueryRunner): Promise<void> {

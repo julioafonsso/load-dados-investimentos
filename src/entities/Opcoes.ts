@@ -2,7 +2,7 @@ import { type } from "os";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
-export class Opcoes {
+export class Opcao {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -20,9 +20,6 @@ export class Opcoes {
 
   @Column({ type: "decimal", name: "preco_acao" })
   precoAcao: number;
-
-  @Column({ type: "decimal", name: "preco_acao_real_time" })
-  precoAcaoRealTime: number;
 
   @Column({ type: "decimal" })
   striker: number;
@@ -42,10 +39,8 @@ export class Opcoes {
   @Column({type : "boolean", name: "ind_formador_mercado"})
   indFormadorMercado : boolean
 
-  @Column({type: "boolean", name: "ind_ultimo_negociacao"})
-  indUltimaNegociacao: boolean;
 
-  isEqual = (op: Opcoes): boolean => {
+  isEqual = (op: Opcao): boolean => {
     return this.codigo == op.codigo;
   };
 }

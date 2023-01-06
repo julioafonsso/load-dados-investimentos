@@ -4,12 +4,11 @@ import { HistAcao } from "../entities/HistAcao";
 import { AcaoHistType, getAcaoHist } from "../sdk/HistAcoesSDK";
 
 const loadHist = async (acoes : string[]) => {
-
-    
     
     const histRepository = AppDataSource.getRepository(HistAcao);
 
    
+    // Nao usa o for each para fazer um de cada vez, para evitar erro da API de excesso de request.
     for (const acao of acoes) {
         (await histRepository.findBy({ ticker: acao }))
             .forEach(acaoBd => histRepository.remove(acaoBd));
@@ -44,7 +43,7 @@ const loadHist = async (acoes : string[]) => {
         Object.entries(histMap).forEach(
             ([_, value]) => histRepository.save(value)
         );
-        await setTimeout(100);
+        await setTimeout(100); // Se nao tive esse break, a API recusa por excesso de requests
 
     }
 
