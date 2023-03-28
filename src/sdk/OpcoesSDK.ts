@@ -2,9 +2,12 @@ import axios from "axios";
 
 type DataType = {
   expirations: ExpirationsType[];
-  p: number;
+  underlying_asset: AcaoData;
 };
 
+type AcaoData = {
+  p: number
+}
 type ExpirationsType = {
   calls: [];
   puts: [];

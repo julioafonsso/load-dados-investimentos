@@ -19,8 +19,8 @@ const main = async () => {
   for(const acao of list){
     const responseOpcoes = await getListOpcoes(acao.ticker);
     for(const ex of responseOpcoes.data.expirations){
-      allPromisses.push(saveOpcao(ex.calls, "CALL", acao, ex.dt, responseOpcoes.data.p, opcaoRepository));
-      allPromisses.push(saveOpcao(ex.puts, "PUT", acao, ex.dt, responseOpcoes.data.p, opcaoRepository));
+      allPromisses.push(saveOpcao(ex.calls, "CALL", acao, ex.dt, responseOpcoes.data.underlying_asset.p, opcaoRepository));
+      allPromisses.push(saveOpcao(ex.puts, "PUT", acao, ex.dt, responseOpcoes.data.underlying_asset.p, opcaoRepository));
     }
   }
   
@@ -80,10 +80,10 @@ const buildOpcoes = (
   opcoes.vencimento = dataVencimento;
   opcoes.precoAcao = precoAcao;
   opcoes.striker = values[3];
-  opcoes.ultimoPreco = values[5];
-  opcoes.dataUltimaNegociacao = moment(values[7], "DD/MM/YYYY").toDate();
-  opcoes.volatilidade = values[10];
-  opcoes.delta = values[11];
+  opcoes.ultimoPreco = values[6];
+  opcoes.dataUltimaNegociacao = moment(values[8], "DD/MM/YYYY").toDate();
+  opcoes.volatilidade = values[17];
+  opcoes.delta = values[18];
   opcoes.indFormadorMercado = values[1]
 
   return opcoes;
