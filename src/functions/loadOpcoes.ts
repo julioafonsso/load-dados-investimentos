@@ -83,7 +83,7 @@ const buildOpcoes = (
   opcoes.ultimoPreco = values[6];
   opcoes.dataUltimaNegociacao = moment(values[8], "DD/MM/YYYY").toDate();
   opcoes.volatilidade = values[17];
-  opcoes.delta = values[18];
+  opcoes.delta = values[18] == null ? 0 : values[18];
   opcoes.indFormadorMercado = values[1]
 
   return opcoes;
