@@ -1,15 +1,16 @@
 import axios from "axios";
 import qs from "qs";
+import exp from "constants";
 
 
 
-export type AcaoHistType = {
+export type AttIndicador = {
     key: string,
-    ranks: AcaoHistRankType[]
+    ranks: AttIndicadorRank[]
 
 }
 
-export type AcaoHistRankType = {
+export type AttIndicadorRank = {
     timeType: number;
     rank: number;
     rank_F: string;
@@ -18,7 +19,15 @@ export type AcaoHistRankType = {
     rankN: number;
 }
 
-export const getAcaoHist = async (acao: string): Promise<AcaoHistType[]> => {
+export const getIndicadoresBrasil = async (acao: string): Promise<AttIndicador[]> => {
+    return getIndicadores(acao, "https://statusinvest.com.br/acao/indicatorhistoricallist");
+}
+
+export const getIndicadoresUSA = async (acao: string): Promise<AttIndicador[]> => {
+    return getIndicadores(acao, "https://statusinvest.com.br/stock/indicatorhistoricallist");
+}
+const getIndicadores = async (acao: string, url: string): Promise<AttIndicador[]> => {
+    console.log(acao);
     var bodyFormData = {
         "codes": [acao.toLocaleLowerCase()],
         "time": "7",
@@ -27,7 +36,7 @@ export const getAcaoHist = async (acao: string): Promise<AcaoHistType[]> => {
     }
     try {
         const res = await axios.post(
-            'https://statusinvest.com.br/acao/indicatorhistoricallist',
+            url,
             qs.stringify(bodyFormData),
             {
                 headers: {
@@ -39,7 +48,8 @@ export const getAcaoHist = async (acao: string): Promise<AcaoHistType[]> => {
 
         return res.data["data"][acao.toLocaleLowerCase()];
     } catch (e) {
-        console.log("error -> ", e)
+        console.log(`error -> ticker : ${acao} , HttpStatus : ${e.response.status}, Message : ${e.response.statusText} , url : ${url}`)
+        return []
     }
 
 }

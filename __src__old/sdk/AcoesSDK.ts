@@ -1,27 +1,7 @@
 import axios from "axios";
 import { Acao } from "../entities/Acao";
 
-const CATEGORY = {
-    BRASIL : 1,
-    USA : 12
-}
-
-const SETOR = {
-    BEN_INDUSTRIAIS : 1,
-    CONSUMO_CICLICO : 2,
-    CONSUMO_NAO_CICLICO : 3,
-    FINANCEIROS_OUTROS : 4,
-    MATERIAIS_BASICO : 5,
-    PETROLEO_GAS : 6,
-    SAUDE : 7,
-    TECNLOGIA_INFORMACAO : 8,
-    COMUNICACAO : 9,
-    UTILIDADE_PUBLICA : 10
-}
-
 const CATEGORY_ACAO_BRASIL = 1;
-const CATEGORY_ACAO_USA = 12;
-
 const SETOR_BEN_INDUSTRIAIS = 1;
 const SETOR_CONSUMO_CICLICO = 2;
 const SETOR_CONSUMO_NAO_CICLICO = 3;
@@ -47,16 +27,16 @@ export type AcaoType = {
 export const getAcoes = async() : Promise<Acao[]> =>{
       let res:  Acao[] = [];
 
-     let categorias =  Object.values(CATEGORY)
-    let setores =  Object.values(SETOR)
-
-
-      for(const categoria  of categorias) {
-          for (const setor of setores) {
-              res.push(...await call(categoria, setor))
-          }
-      }
-
+      res.push(...await call(CATEGORY_ACAO_BRASIL, SETOR_BEN_INDUSTRIAIS))
+      res.push(...await call(CATEGORY_ACAO_BRASIL, SETOR_CONSUMO_CICLICO));
+      res.push(...await call(CATEGORY_ACAO_BRASIL, SETOR_CONSUMO_NAO_CICLICO));
+      res.push(...await call(CATEGORY_ACAO_BRASIL, SETOR_FINANCEIROS_OUTROS));
+      res.push(...await call(CATEGORY_ACAO_BRASIL, SETOR_MATERIAIS_BASICO));
+      res.push(...await call(CATEGORY_ACAO_BRASIL, SETOR_PETROLEO_GAS));
+      res.push(...await call(CATEGORY_ACAO_BRASIL, SETOR_SAUDE));
+      res.push(...await call(CATEGORY_ACAO_BRASIL, SETOR_TECNLOGIA_INFORMACAO));
+      res.push(...await call(CATEGORY_ACAO_BRASIL, SETOR_COMUNICACAO));
+      res.push(...await call(CATEGORY_ACAO_BRASIL, SETOR_UTILIDADE_PUBLICA));
       return res;
 };
 

@@ -1,6 +1,5 @@
 import { DataSource } from "typeorm";
-import { Acao } from "../entities/Acao";
-import {Indicadores} from "../entities/Indicadores";
+import { Acao } from "../entities/Acao__";
 
 
 export const AppDataSource = new DataSource({
@@ -12,7 +11,7 @@ export const AppDataSource = new DataSource({
   database: "Investimento",
   synchronize: false,
   logging: false,
-  entities: [Acao, Indicadores],
+  entities: [Acao],
   subscribers: [],
   migrations: ["./src/migrations/*.ts"],
 });

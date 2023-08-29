@@ -1,5 +1,5 @@
 import { AppDataSource } from "../config/AppDataSource";
-import { ConfigAcao } from "../entities/ConfigAcao";
+import { ConfigAcao } from "../entities/Acao";
 import loadHist from "./loadAcaoHist";
 
 const main = async () => {

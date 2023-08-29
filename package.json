@@ -6,6 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc --build",
+    "loadAcao": "ts-node src/functions/loadAcoes.ts",
+    "indicadores": "ts-node src/functions/loadIndicadores.ts",
+
     "histAcaoBrasil": "ts-node src/functions/loadAcaoHistBrasil.ts ",
     "histAcaoUSA": "ts-node src/functions/loadAcaoHistUSA.ts ",
     "acaoBrasil": "ts-node src/functions/loadAcoesBrasil.ts ",

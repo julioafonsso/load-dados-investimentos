@@ -1,6 +1,6 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity()
+@Entity({name:"acao"})
 export class Acao {
   @PrimaryGeneratedColumn()
   id: number;
@@ -17,7 +17,7 @@ export class Acao {
   @Column({name: "sector_name"})
   sectorName: string;
   
-  @Column({name: "segment_name"})
+  @Column({name: "sector_name"})
   segmentName: string;
 
   @Column({name: "sub_sector_name"})

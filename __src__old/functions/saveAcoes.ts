@@ -1,6 +1,6 @@
 import { AppDataSource } from "../config/AppDataSource";
-import { Acao } from "../entities/Acao";
-import { AcaoType } from "../sdk/AcoesSDK";
+import { Acao } from "../entities/Acao__";
+import { AcaoType } from "../sdk/AcoesIndicadoresSDK";
 
 const saveAcoes = async (acoes: AcaoType[]) => {
     await AppDataSource.initialize();

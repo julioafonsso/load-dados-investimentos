@@ -1,4 +1,4 @@
-import { getAcoesUSA } from "../sdk/AcoesSDK";
+import { getAcoesUSA } from "../sdk/AcoesIndicadoresSDK";
 import saveAcoes from "./saveAcoes";
 
 const main = async () => {

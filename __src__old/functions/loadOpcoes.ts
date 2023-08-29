@@ -1,11 +1,11 @@
 import { AppDataSource } from "../config/AppDataSource";
-import { ConfigAcao } from "../entities/ConfigAcao";
+import { ConfigAcao } from "../entities/Acao";
 import { Opcao } from "../entities/Opcoes";
 import { getListOpcoes } from "../sdk/OpcoesSDK";
 import moment from "moment";
 import { Repository } from "typeorm";
 import { ConfigOpcao } from "../entities/ConfigOpcao";
-import { Acao } from "../entities/Acao";
+import { Acao } from "../entities/Acao__";
 
 const main = async () => {
   await AppDataSource.initialize();
