@@ -2,8 +2,9 @@ import { AppDataSource } from "../config/AppDataSource";
 import { Acao } from "../entities/Acao";
 import {Indicadores} from "../entities/Indicadores";
 import {setTimeout} from "timers/promises";
-import {AttIndicador, getIndicadoresBrasil, getIndicadoresUSA} from "../sdk/HistAcoesSDK";
+import {AttIndicador, getIndicadores} from "../sdk/HistAcoesSDK";
 import {Repository} from "typeorm";
+import {CATEGORY} from "../sdk/AcoesSDK";
 
 const main = async () =>{
     await AppDataSource.initialize();
@@ -12,31 +13,21 @@ const main = async () =>{
 
     await indicadoresRepository.clear();
 
-    indicadorUSA(indicadoresRepository, acaoRepository);
-    indicadorBrasil(indicadoresRepository, acaoRepository);
+    await loadIndicadores(indicadoresRepository, acaoRepository, CATEGORY.USA);
+    await loadIndicadores(indicadoresRepository, acaoRepository, CATEGORY.BRASIL);
 
 }
 
-const indicadorUSA = async (indicadoresRepository: Repository<Indicadores>, acaoRepository: Repository<Acao>) =>{
-    const listAcoes = await acaoRepository.findBy({categoryId:12});
+const loadIndicadores= async (indicadoresRepository: Repository<Indicadores>, acaoRepository: Repository<Acao>, categoryId: number) =>{
+    const listAcoes = await acaoRepository.findBy({categoryId: categoryId});
+
     for (const acao of listAcoes) {
-        const hist = await getIndicadoresUSA(acao.ticker)
+        const hist = await getIndicadores(acao.ticker, categoryId)
         if(hist.length > 0 )
             save(acao.ticker, hist, indicadoresRepository)
         await setTimeout(500); // Se nao tive esse break, a API recusa por excesso de requests
     }
 }
-
-const indicadorBrasil = async (indicadoresRepository: Repository<Indicadores>, acaoRepository: Repository<Acao>) =>{
-    const listAcoes = await acaoRepository.findBy({categoryId:1});
-    for (const acao of listAcoes) {
-        const hist = await getIndicadoresBrasil(acao.ticker)
-        if(hist.length > 0 )
-            save(acao.ticker, hist, indicadoresRepository)
-        await setTimeout(500); // Se nao tive esse break, a API recusa por excesso de requests
-    }
-}
-
 const save = (ticker: string, att:AttIndicador[],  indicadoresRepository: Repository<Indicadores>) => {
     const histMap = {}
 

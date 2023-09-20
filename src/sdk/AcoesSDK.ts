@@ -1,7 +1,7 @@
 import axios from "axios";
 import {Acao} from "../entities/Acao";
 
-const CATEGORY = {
+export const CATEGORY = {
     BRASIL: 1,
     USA: 12
 }

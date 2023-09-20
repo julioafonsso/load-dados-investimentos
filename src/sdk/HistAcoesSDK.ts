@@ -1,8 +1,10 @@
 import axios from "axios";
 import qs from "qs";
-import exp from "constants";
+import {CATEGORY} from './AcoesSDK'
 
-
+const URL = new Map()
+URL.set(CATEGORY.BRASIL, "https://statusinvest.com.br/acao/indicatorhistoricallist");
+URL.set(CATEGORY.USA, "https://statusinvest.com.br/stock/indicatorhistoricallist");
 
 export type AttIndicador = {
     key: string,
@@ -19,18 +21,13 @@ export type AttIndicadorRank = {
     rankN: number;
 }
 
-export const getIndicadoresBrasil = async (acao: string): Promise<AttIndicador[]> => {
-    return getIndicadores(acao, "https://statusinvest.com.br/acao/indicatorhistoricallist");
-}
 
-export const getIndicadoresUSA = async (acao: string): Promise<AttIndicador[]> => {
-    return getIndicadores(acao, "https://statusinvest.com.br/stock/indicatorhistoricallist");
-}
-const getIndicadores = async (acao: string, url: string): Promise<AttIndicador[]> => {
-    console.log(acao);
+export const getIndicadores = async (acao: string, categoryId: number): Promise<AttIndicador[]> => {
+    console.log(`GET acao ${acao}`)
+    let url = URL.get(categoryId);
     var bodyFormData = {
         "codes": [acao.toLocaleLowerCase()],
-        "time": "7",
+        "time": "5",
         "byQuarter": false,
         "futureData": false
     }
@@ -48,7 +45,14 @@ const getIndicadores = async (acao: string, url: string): Promise<AttIndicador[]
 
         return res.data["data"][acao.toLocaleLowerCase()];
     } catch (e) {
-        console.log(`error -> ticker : ${acao} , HttpStatus : ${e.response.status}, Message : ${e.response.statusText} , url : ${url}`)
+        if(e.response !== undefined){
+            console.log(`error -> ticker : ${acao} , HttpStatus : ${e.response.status}, Message : ${e.response.statusText} , url : ${url}`)
+        }else{
+            console.log(`error -> ticker : ${acao} , error : ${e} , url : ${url}`)
+        }
+
+        console.log("vou continuar executando")
+
         return []
     }
 
