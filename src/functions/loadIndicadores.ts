@@ -1,5 +1,5 @@
-import { AppDataSource } from "../config/AppDataSource";
-import { Acao } from "../entities/Acao";
+import {AppDataSource} from "../config/AppDataSource";
+import {Acao} from "../entities/Acao";
 import {Indicadores} from "../entities/Indicadores";
 import {setTimeout} from "timers/promises";
 import {Repository} from "typeorm";
@@ -11,7 +11,6 @@ import qs from "qs";
 const URL = new Map()
 URL.set(CATEGORY.BRASIL, "https://statusinvest.com.br/acao/indicatorhistoricallist");
 URL.set(CATEGORY.USA, "https://statusinvest.com.br/stock/indicatorhistoricallist");
-
 
 
 export type AttIndicador = {
@@ -30,7 +29,7 @@ export type AttIndicadorRank = {
 }
 
 
-const main = async () =>{
+const main = async () => {
     await AppDataSource.initialize();
     const acaoRepository = AppDataSource.getRepository(Acao)
     const indicadoresRepository = AppDataSource.getRepository(Indicadores)
@@ -42,17 +41,16 @@ const main = async () =>{
 
 }
 
-const loadIndicadores= async (indicadoresRepository: Repository<Indicadores>, acaoRepository: Repository<Acao>, categoryId: number) =>{
+const loadIndicadores = async (indicadoresRepository: Repository<Indicadores>, acaoRepository: Repository<Acao>, categoryId: number) => {
     const listAcoes = await acaoRepository.findBy({categoryId: categoryId});
 
     for (const acao of listAcoes) {
         const hist = await getIndicadores(acao.ticker, categoryId)
-        if(hist.length > 0 )
+        if (hist.length > 0)
             save(acao.ticker, hist, indicadoresRepository)
-        await setTimeout(500); // Se nao tive esse break, a API recusa por excesso de requests
     }
 }
-const save = (ticker: string, att:AttIndicador[],  indicadoresRepository: Repository<Indicadores>) => {
+const save = (ticker: string, att: AttIndicador[], indicadoresRepository: Repository<Indicadores>) => {
     const histMap = {}
 
     setValues(histMap, att, ticker, "dy", "dy")
@@ -123,14 +121,14 @@ const getIndicadores = async (acao: string, categoryId: number): Promise<AttIndi
 
         return res.data["data"][acao.toLocaleLowerCase()];
     } catch (e) {
-        if(e.response !== undefined){
-            console.log(`error -> ticker : ${acao} , HttpStatus : ${e.response.status}, Message : ${e.response.statusText} , url : ${url}`)
-        }else{
-            console.log(`error -> ticker : ${acao} , error : ${e} , url : ${url}`)
+        if (e?.response?.status === 429) {
+            console.log("too many request, I will sleep")
+            await setTimeout(200);
+            return getIndicadores(acao, categoryId);
+        } else {
+            console.log(`Occur some error to ticket ${acao} : status ${e?.response?.status}`);
+            return [];
         }
-        console.log("vou continuar executando")
-
-        return []
     }
 
 }
