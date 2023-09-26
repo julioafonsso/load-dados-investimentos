@@ -4,7 +4,7 @@ export class createTableDividendo1695229429281 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         queryRunner.createTable(new Table({
-            name: "dividendo",
+            name: "lucro_dividendo",
             columns: [{
                 name: "id",
                 type: "serial",
@@ -12,7 +12,9 @@ export class createTableDividendo1695229429281 implements MigrationInterface {
             },
                 { name: "ticker", type: "varchar(10)", isNullable: true },
                 { name: "ano", type: "int", isNullable: true },
-                { name: "value", type: "decimal", isNullable: true }
+                { name: "payout", type: "decimal", isNullable: true },
+                { name: "value", type: "decimal", isNullable: true },
+                { name: "lucro_liquido", type: "decimal", isNullable: true },
             ]
         }))
     }

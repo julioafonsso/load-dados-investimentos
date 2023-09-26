@@ -30,19 +30,23 @@ export type AttIndicadorRank = {
 
 
 const main = async () => {
+    console.log("Init Load Indicadores")
     await AppDataSource.initialize();
     const acaoRepository = AppDataSource.getRepository(Acao)
     const indicadoresRepository = AppDataSource.getRepository(Indicadores)
 
     await indicadoresRepository.clear();
 
-    await loadIndicadores(indicadoresRepository, acaoRepository, CATEGORY.USA);
     await loadIndicadores(indicadoresRepository, acaoRepository, CATEGORY.BRASIL);
+    console.log("Finish Load Indicadores Brasil")
+    await loadIndicadores(indicadoresRepository, acaoRepository, CATEGORY.USA);
+    console.log("Finish Load Indicadores USA")
+
 
 }
 
 const loadIndicadores = async (indicadoresRepository: Repository<Indicadores>, acaoRepository: Repository<Acao>, categoryId: number) => {
-    const listAcoes = await acaoRepository.findBy({categoryId: categoryId});
+    const listAcoes = (await acaoRepository.findBy({categoryId: categoryId}));
 
     for (const acao of listAcoes) {
         const hist = await getIndicadores(acao.ticker, categoryId)
@@ -99,7 +103,6 @@ const setValues = (map: {}, hist: AttIndicador[], ticker: string, attrName: stri
 }
 
 const getIndicadores = async (acao: string, categoryId: number): Promise<AttIndicador[]> => {
-    console.log(`GET acao ${acao}`)
     let url = URL.get(categoryId);
     const bodyFormData = {
         "codes": [acao.toLocaleLowerCase()],
