@@ -23,4 +23,7 @@ export class LucroDividendo {
     @Column({name : "lucro_liquido", nullable: true})
     lucroLiquido: number;
 
+    @Column({name: "crescimento_lucro", nullable: true})
+    crescimentoLucro: number;
+
 }

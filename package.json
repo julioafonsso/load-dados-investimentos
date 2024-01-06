@@ -8,7 +8,8 @@
     "typeorm": "typeorm-ts-node-commonjs",
     "loadAcao": "ts-node src/functions/loadAcoes.ts",
     "loadDividendos": "ts-node src/functions/loadLucroDividendos.ts",
-    "indicadores": "ts-node src/functions/loadIndicadores.ts",
+    "loadIndicadores": "ts-node src/functions/loadIndicadores.ts",
+    "loadPrice": "ts-node src/functions/loadPreco.ts",
     "migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run -d ./src/config/AppDataSource.ts",
     "migration:generate": "npm run typeorm migration:generate -- -d ./src/config/AppDataSource.ts",
     "migration:create": "npm run typeorm migration:create"

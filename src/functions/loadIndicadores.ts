@@ -15,6 +15,7 @@ URL.set(CATEGORY.USA, "https://statusinvest.com.br/stock/indicatorhistoricallist
 
 export type AttIndicador = {
     key: string,
+    avg: number,
     ranks: AttIndicadorRank[]
 
 }
@@ -31,7 +32,13 @@ export type AttIndicadorRank = {
 
 const main = async () => {
     console.log("Init Load Indicadores")
-    await AppDataSource.initialize();
+    try {
+        await AppDataSource.initialize();
+    }catch (e){
+        console.log(e);
+        return;
+    }
+
     const acaoRepository = AppDataSource.getRepository(Acao)
     const indicadoresRepository = AppDataSource.getRepository(Indicadores)
 
@@ -81,12 +88,24 @@ const save = (ticker: string, att: AttIndicador[], indicadoresRepository: Reposi
     setValues(histMap, att, ticker, "giroAtivos", "giro_ativos")
     setValues(histMap, att, ticker, "passivoAtivo", "passivo_ativo")
     Object.entries(histMap).forEach(
-        ([_, value]) => indicadoresRepository.save(value)
+         ([_, value]) => indicadoresRepository.save(value)
     );
 }
 
 const setValues = (map: {}, hist: AttIndicador[], ticker: string, attrName: string, keyName: string) => {
     const pl = hist.filter(h => h.key === keyName)[0]
+
+
+    if (map[0] == null) {
+        const tmp = new Indicadores();
+        tmp.ano = 0;
+        tmp.ticker = ticker;
+        map[0] = tmp
+    }
+
+    const histBD = map[0];
+    histBD[attrName] = pl.avg
+
     pl.ranks.forEach(rank => {
 
         if (map[rank.rank] == null) {

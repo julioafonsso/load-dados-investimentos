@@ -39,8 +39,7 @@ export class CreateTableIndicadores1692970242665 implements MigrationInterface {
                     { name: "vpa", type: "decimal", isNullable: true },
                     { name: "lpa", type: "decimal", isNullable: true },
                     { name: "valor_mercado", type: "decimal", isNullable: true },
-                    { name: "ano", type: "int", isNullable: true },
-                    { name: "ind_ultimo", type: "boolean", isNullable: true },
+                    { name: "ano", type: "int", isNullable: true }
 
                 ]
             }

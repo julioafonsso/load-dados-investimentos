@@ -49,8 +49,12 @@ const loadLucroDividendos = async (repository: Repository<LucroDividendo>, acaoR
 
     for (const acao of listAcoes) {
 
-        const dividendos = await getDividendo(categoryId, acao.ticker);
+        const dividendos = (await getDividendo(categoryId, acao.ticker))
+            .sort((a,b) => a.rank < b.rank ? 1: 0);
         const payouts = await getPayout(categoryId, acao.ticker, acao.companyId);
+
+        let lucroAnterior = undefined;
+        let avgCrescimento = 0;
 
         dividendos.forEach(dividendo => {
             let entity = new LucroDividendo();
@@ -60,9 +64,15 @@ const loadLucroDividendos = async (repository: Repository<LucroDividendo>, acaoR
 
             let payout = payouts.filter(payout => payout.ano == dividendo.rank)
                 .pop();
+
             if(payout !== undefined){
                 entity.payout = payout.percentual;
                 entity.lucroLiquido = payout.lucro;
+                if(lucroAnterior != undefined){
+                    entity.crescimentoLucro = ((entity.lucroLiquido / lucroAnterior) - 1) * 100
+                    avgCrescimento =+ entity.crescimentoLucro;
+                }
+                lucroAnterior = payout.lucro;
             }
 
 
@@ -70,11 +80,20 @@ const loadLucroDividendos = async (repository: Repository<LucroDividendo>, acaoR
 
         })
 
+        let avg = new LucroDividendo();
+        avg.ticker = acao.ticker;
+        avg.ano = 0
+        avg.value = dividendos.map(div => div.value).reduce((a, b) => a+b, 0) / dividendos.length;
+        avg.payout = payouts.map(div => div.percentual).reduce((a, b) => a+b, 0) / payouts.length;
+        avg.lucroLiquido = payouts.map(div => div.lucro).reduce((a, b) => a+b, 0) / payouts.length;
+        avg.crescimentoLucro = avgCrescimento / payouts.filter(p => p.lucro !== null).length;
+
+        await repository.save(avg);
+
     }
 
 }
 const getDividendo = async (categoryId: number, ticker: string): Promise<DividendoType[]> => {
-    console.log(ticker)
     const url = URL_DIVIDENDO.get(categoryId);
     try {
         const res = await axios.get(
@@ -117,14 +136,13 @@ const getPayout = async (categoryId: number, ticker: string, companyId: number):
         let anos:number[] = res.data['chart']['category']
         let percentuais : number[] = res.data['chart']['series']['percentual']
         let lucros : number[] = res.data['chart']['series']['lucroLiquido']
-        let response =  anos.map((ano, index) => {
+        return anos.map((ano, index) => {
             return {
                 ano: ano,
                 percentual : percentuais[index]['value'],
                 lucro : lucros[index]['value']
             }
         })
-        return response;
     } catch (e) {
         if (e?.response?.status === 429) {
             console.log("too many request, I will sleep")

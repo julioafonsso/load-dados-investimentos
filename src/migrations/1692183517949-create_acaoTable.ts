@@ -1,4 +1,4 @@
-import { MigrationInterface, QueryRunner, Table } from "typeorm"
+import {MigrationInterface, QueryRunner, Table} from "typeorm"
 
 export class createAcaoTable1692183517949 implements MigrationInterface {
 
@@ -10,13 +10,14 @@ export class createAcaoTable1692183517949 implements MigrationInterface {
                 type: "serial",
                 isPrimary: true
             },
-            { name: "ticker", type: "varchar(10)", isNullable: true },
-            { name: "category_id", type: "int", isNullable: true },
-            { name: "company_id", type: "int", isNullable: true },
-            { name: "company_name", type: "varchar(200)" },
-            { name: "sector_name", type: "varchar(200)" },
-            { name: "segment_name", type: "varchar(200)" },
-            { name: "sub_sector_name", type: "varchar(200)" }
+                {name: "ticker", type: "varchar(10)", isNullable: true},
+                {name: "category_id", type: "int", isNullable: true},
+                {name: "company_id", type: "int", isNullable: true},
+                {name: "company_name", type: "varchar(200)"},
+                {name: "sector_name", type: "varchar(200)"},
+                {name: "segment_name", type: "varchar(200)"},
+                {name: "sub_sector_name", type: "varchar(200)"},
+                {name: "price", type: "decimal", isNullable: true}
             ]
         }))
     }

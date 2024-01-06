@@ -15,6 +15,7 @@ export class createTableDividendo1695229429281 implements MigrationInterface {
                 { name: "payout", type: "decimal", isNullable: true },
                 { name: "value", type: "decimal", isNullable: true },
                 { name: "lucro_liquido", type: "decimal", isNullable: true },
+                { name: "crescimento_lucro", type: "decimal", isNullable: true },
             ]
         }))
     }

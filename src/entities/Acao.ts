@@ -26,4 +26,7 @@ export class Acao {
   @Column({ nullable: true })
   ticker: string;
 
+  @Column({ name: "price", nullable: true })
+  price: number;
+
 }

@@ -94,6 +94,4 @@ export class Indicadores {
     @Column( { name: "ano" })
     ano: number;
 
-    @Column("boolean", {name: "ind_ultimo"})
-    indUltimo: boolean
 }
